@@ -3,7 +3,11 @@ import tornado.ioloop
 import tornado.web
 import os
 
+
 class BigFileHandler(tornado.web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
     @tornado.gen.coroutine
     def get(self, file_path: str):
         buf_size = 65536
@@ -21,5 +25,8 @@ class BigFileHandler(tornado.web.RequestHandler):
 
 
 class NoCacheStaticFileHandler(tornado.web.StaticFileHandler):
+    def data_received(self, chunk):
+        pass
+
     def set_extra_headers(self, path):
         self.set_header('Cache-control', 'no-cache')
