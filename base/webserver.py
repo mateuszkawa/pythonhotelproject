@@ -2,7 +2,7 @@
 import tornado.ioloop
 import tornado.web
 import os
-from pythonhotelproject.base.handler.filehandler import NoCacheStaticFileHandler
+from base.handler.filehandler import NoCacheStaticFileHandler
 
 url_mapper = [
             (r"/(.*\.html)" , tornado.web.StaticFileHandler, {'path': os.getcwd()}),
