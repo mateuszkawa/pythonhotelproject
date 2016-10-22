@@ -1,5 +1,11 @@
 # pythonhotelproject
 
+## Setting-up IDE with Project
+1. PyCharm - Create Project. - choose location (for example: D:\DEVELOPMENT\Python\workspace\GIThubPythonProject).
+2. Run (git bash?) and go to created directory (for example: cd D:\DEVELOPMENT\Python\workspace\GIThubPythonProject).
+3. Enter copy command (for example: git clone git@github.com:mateuszkawa/pythonhotelproject.git).
+4. Change focus to PyCharm, View -> Tool Windows -> Project (Alt + 1). Now everything should be fine.
+
 ## Start
 Just run webapp.py. After this we just have to launch [localhost on port 8090/hotel](http://localhost:8090/hotel) to see 1st sample page.
 
