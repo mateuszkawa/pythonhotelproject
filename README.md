@@ -26,7 +26,18 @@ In order to start We need several additional python libraries:
 2. Mako - like in Tornado:
   - Start a cmd as an Administrator.
   - 'pip install Mako'
-3. Database Connector - this is something that we should discuss. My proposal is to use PostgreSQL.
+3. Database Connector:
+  - Start a cmd as an Administrator.
+  - 'pip install psycopg2'
+4. ORM - SQLAlchemy:
+  - Start a cmd as an Administrator.
+  - 'pip install sqlalchemy'
 
 ## Additional Info
-Material kit page: http://demos.creative-tim.com/material-kit/index.html
+1. Material kit page: http://demos.creative-tim.com/material-kit/index.html
+2. PostgreSQL database is set to base configuration:
+  - address: 127.0.0.1
+  - port: 5432
+  - login: postgres
+  - password: postgres
+3. To setup schema simply run setup.py from dao module.
