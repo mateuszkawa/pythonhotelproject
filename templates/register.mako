@@ -1,23 +1,6 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
+<%inherit file="layout.mako"/>
 
-        <link href="/assets/material/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="/assets/material/css/material-kit.css" rel="stylesheet" />
-        <title>HOTEL</title>
-    </head>
-    <body class="signup-page">
-        <nav class="navbar navbar-transparent navbar-absolute">
-            <div class="container">
-                <div class="navbar-header">
-                    Menu?
-                </div>
-            </div>
-        </nav>
 
-        <div class="wrapper">
             <div class="header header-filter" style="background-image: url('../assets/material/img/city.jpg'); background-size: cover; background-position: top center;">
                 <div class="container">
                     <div class="row">
@@ -74,7 +57,3 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-    </body>
-</html>

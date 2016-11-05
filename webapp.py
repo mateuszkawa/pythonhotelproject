@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import base.webserver as webserver
-from handler.start import HotelStartHandler
+from handler.register import HotelRegisterHandler
 from rest.signin import HotelSignInREST
 
 webserver.url_mapper.extend((
-    (r"/hotel", HotelStartHandler),
+    (r"/register", HotelRegisterHandler),
     (r"/hotel/rest/signin", HotelSignInREST),
     ))
 
