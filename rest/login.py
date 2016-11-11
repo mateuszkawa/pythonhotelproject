@@ -17,7 +17,7 @@ class LoginREST(tornado.web.RequestHandler):
         pprint.pprint(self.request.arguments)
         for elem in self.request.arguments:
             print("%s: %s" % (elem, self.get_argument(elem)))
-        self.redirect('/hotel')
+        self.redirect('/main')
 
     def __handle_cookie(self: tornado.web.RequestHandler):
         user = User.get_user(login=self.get_argument("inputLogin"), password=self.get_argument("inputPassword"))
