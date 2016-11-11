@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import Column, Integer, String, ForeignKey
-from dao import Base
+from dao import Base, get_engine
+from sqlalchemy.orm import create_session
 
 
 class User(Base):
@@ -17,3 +18,10 @@ class User(Base):
     password = Column('password', String, nullable=False)
     permission_level = Column('permission_level', Integer, nullable=False, default=3)
     client = Column('client', Integer, ForeignKey('client.client_id'), nullable=True)
+
+    @staticmethod
+    def get_user(login: str, password: str) -> 'User':
+        session = create_session(bind=get_engine())
+        user = session.query(User).filter(User.login == login, User.password == password).first()
+        session.close()
+        return user

@@ -3,7 +3,7 @@ import tornado.web
 import mako.lookup
 
 
-class HotelRegisterHandler(tornado.web.RequestHandler):
+class RegistrationHandler(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
 
