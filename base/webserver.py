@@ -25,7 +25,8 @@ url_mapper = [
 
 def start(port: int):
     application = tornado.web.Application(url_mapper)
-    application.settings["cookie_secret"] = "someRandomValueHotel"
+    application.settings['cookie_secret'] = 'someRandomValueHotel'
+    application.settings['login_url'] = '/login'
     application.listen(port)
     print('Service listen on {port}'.format(port=port))
     tornado.ioloop.IOLoop.instance().start()
