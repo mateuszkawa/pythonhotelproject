@@ -2,6 +2,7 @@
 import tornado.web
 import mako.lookup
 from dao.room import Room
+from handler.helpers.menu import prepare_variables
 
 
 class MainPageRoomHandler(tornado.web.RequestHandler):
@@ -13,6 +14,7 @@ class MainPageRoomHandler(tornado.web.RequestHandler):
         template_lookup = mako.lookup.TemplateLookup(directories=['templates'], module_directory='templates/tmp')
         template = template_lookup.get_template('main_room_list.mako')
         variables = {'room_dict': self.prepare_rooms()}
+        prepare_variables(self, variables=variables)
         response = template.render(**variables)
         self.write(response)
 

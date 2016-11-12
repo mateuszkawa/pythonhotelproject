@@ -22,14 +22,14 @@ def create_sample_data():
 
     #add some client
     session.begin()
-    client = Client(name='example_name_1', surname='example_surname_1')
-    session.add(client)
+    for client in [Client(name=('example_name_%s' % x), surname=('example_surname_%s' % x)) for x in range(1, 4)]:
+        session.add(client)
     session.commit()
 
     #add some user
     session.begin()
-    user = User(login='user_1', password='user_1', client=client.id)
-    session.add(user)
+    for user in [User(login=('user_%s' % x), password=('user_%s' % x), client=x, permission_level=x) for x in range(1, 4)]:
+        session.add(user)
     session.commit()
 
     #add some rooms
