@@ -12,8 +12,8 @@ class Client(Base):
     surname = Column('surname', String, nullable=False)
 
     @staticmethod
-    def get_client(clinet_id: Integer) -> 'Client':
+    def get_client(client_id: Integer) -> 'Client':
         session = create_session(bind=get_engine())
-        client = session.query(Client).filter(Client.id == clinet_id).first()
+        client = session.query(Client).filter(Client.id == client_id).first()
         session.close()
         return client
