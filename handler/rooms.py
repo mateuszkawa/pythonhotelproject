@@ -67,3 +67,36 @@ class MainPageRoomFilterHandler(tornado.web.RequestHandler):
                     'id'    : room.id}
         return result_dict
 
+
+class MainPageRoomMyHandler(tornado.web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
+    @tornado.web.authenticated
+    def get(self):
+        template_lookup = mako.lookup.TemplateLookup(directories=['templates'], module_directory='templates/tmp')
+        template = template_lookup.get_template('main_room_list_my.mako')
+        variables = {'room_dict': self.prepare_room_states()}
+        prepare_variables(self, variables=variables)
+        response = template.render(**variables)
+        self.write(response)
+
+    def get_current_user(self):
+        return self.get_secure_cookie("user")
+
+    def prepare_room_states(self) -> dict:
+        result_dict = dict()
+        room_states = RoomState.get_all_room_states_for_user(int(self.get_secure_cookie('id')))
+        for room_state in room_states:
+            result_dict[room_state.room] = dict()
+            result_dict[room_state.room]['name'] = Room.get_room(room_state.room).name
+            result_dict[room_state.room]['date_from'] = room_state.reserved_from
+            result_dict[room_state.room]['date_to'] = room_state.reserved_to
+            if room_state.payment:
+                result_dict[room_state.room]['state'] = 'PAYED'
+            else:
+                result_dict[room_state.room]['state'] = 'RESERVED'
+            result_dict[room_state.room]['pay'] = room_state.payment
+            result_dict[room_state.room]['id'] = room_state.id
+        return result_dict
+

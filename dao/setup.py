@@ -40,7 +40,11 @@ def create_sample_data():
 
     #add some reservations
     session.begin()
-    for roomstate in [RoomState(reserved_from=datetime.date(2016, 11, 15), reserved_to=datetime.date(2016, 11, 17 + x), room=x) for x in range(1, 4)]:
+    for roomstate in [RoomState(
+            reserved_from=datetime.date(2016, 11, 15),
+            reserved_to=datetime.date(2016, 11, 17 + x),
+            room=x,
+            client=3) for x in range(1, 4)]:
         session.add(roomstate)
     session.commit()
 

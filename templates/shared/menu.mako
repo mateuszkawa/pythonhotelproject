@@ -8,5 +8,6 @@
       % endif
     </ul>
     <a class="navbar-brand navbar-right" href="/logout">LogOut</a>
+    <a class="navbar-brand navbar-right" href="/rooms/my">MyRooms</a>
   </div>
 </nav>

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from sqlalchemy import Column, Integer, Date, ForeignKey, or_, and_
+from sqlalchemy import Column, Integer, Boolean, Date, ForeignKey, or_, and_
 from dao import Base, get_engine
 from sqlalchemy.orm import create_session
 import datetime
@@ -11,16 +11,18 @@ class RoomState(Base):
     reserved_from = Column('reserved_from', Date, nullable=False)
     reserved_to = Column('reserved_to', Date, nullable=False)
     room = Column('room', Integer, ForeignKey('room.room_id'), nullable=False)
+    client = Column('client', Integer, ForeignKey('client.client_id'), nullable=False)
+    payment = Column('payment', Boolean, default=False)
 
     @staticmethod
-    def get_all_states_for_room(room_id: Integer) -> 'RoomState':
+    def get_all_states_for_room(room_id: Integer) -> list('RoomState'):
         session = create_session(bind=get_engine())
         states = session.query(RoomState).filter(RoomState.room == room_id).all()
         session.close()
         return states
 
     @staticmethod
-    def get_all_states_for_room_after(room_id: Integer, date_after: datetime.date) -> 'RoomState':
+    def get_all_states_for_room_after(room_id: Integer, date_after: datetime.date) -> list('RoomState'):
         session = create_session(bind=get_engine())
         states = session.query(RoomState).filter(RoomState.room == room_id, RoomState.reserved_to < date_after).all()
         session.close()
@@ -39,6 +41,13 @@ class RoomState(Base):
                 and_(RoomState.reserved_from < date_start, RoomState.reserved_to > date_end))).all()
         session.close()
         return states
+
+    @staticmethod
+    def get_all_room_states_for_user(user_id: Integer) -> list('RoomState'):
+        session = create_session(bind=get_engine())
+        result_room_states = session.query(RoomState).filter(RoomState.client == user_id).all()
+        session.close()
+        return result_room_states
 
 
 if __name__ == '__main__':
