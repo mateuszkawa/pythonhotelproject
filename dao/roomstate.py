@@ -42,5 +42,6 @@ class RoomState(Base):
 
 
 if __name__ == '__main__':
-    for state in RoomState.check_colliding_states_for_room(3, datetime.date(2016, 11, 12), datetime.date(2016, 11, 14)):
+    print(RoomState.check_colliding_states_for_room(1, datetime.date(2016, 11, 18), datetime.date(2016, 11, 21)) == [])
+    for state in RoomState.check_colliding_states_for_room(1, datetime.date(2016, 11, 18), datetime.date(2016, 11, 21)):
         print("from: %s, to: %s" % (state.reserved_from, state.reserved_to))

@@ -7,6 +7,13 @@
     <title>Main</title></head>
 <body> <%include file="shared/menu.mako"/>
 <div class="container">
+    <form action="/rooms/filter" method="post">
+        <label for="date_start">Date Start:</label>
+        <input name="date_start" id="date_start" class="form-control" placeholder="2016/11/18" type="text">
+        <label for="date_end">Date End:</label>
+        <input name="date_end" id="date_end" class="form-control" placeholder="2016/11/21" type="text">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Filter</button>
+    </form>
     <table class="table table-striped">
         <thead>
         <tr>
