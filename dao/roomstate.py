@@ -49,6 +49,35 @@ class RoomState(Base):
         session.close()
         return result_room_states
 
+    @staticmethod
+    def get_room_state_by_id(room_state_id: int) -> 'RoomState':
+        session = create_session(bind=get_engine())
+        result_room_state = session.query(RoomState).filter(RoomState.id == room_state_id).first()
+        session.close()
+        return result_room_state
+
+    @staticmethod
+    def update_room_state(room_state: 'RoomState'):
+        session = create_session(bind=get_engine())
+        session.begin()
+        room_state_in_database = session.query(RoomState).filter(RoomState.id == room_state.id).first()
+        room_state_in_database.reserved_from = room_state.reserved_from
+        room_state_in_database.reserved_to =room_state.reserved_to
+        room_state_in_database.room = room_state.room
+        room_state_in_database.client = room_state.client
+        room_state_in_database.payment = room_state.payment
+        session.commit()
+        session.close()
+
+    @staticmethod
+    def delete_room_state(room_state_id: int):
+        session = create_session(bind=get_engine())
+        session.begin()
+        session.query(RoomState).filter(RoomState.id == room_state_id).delete(synchronize_session=False)
+        session.commit()
+        session.close()
+
+
 
 if __name__ == '__main__':
     print(RoomState.check_colliding_states_for_room(1, datetime.date(2016, 11, 18), datetime.date(2016, 11, 21)) == [])
