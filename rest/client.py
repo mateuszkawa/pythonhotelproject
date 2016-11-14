@@ -4,7 +4,7 @@ import tornado.web
 from dao.client import Client
 
 
-class MeUpdateREST(tornado.web.RequestHandler):
+class MeUpdateRest(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
 

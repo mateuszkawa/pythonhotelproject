@@ -5,7 +5,7 @@ from dao.user import User
 from dao.client import Client
 
 
-class LoginREST(tornado.web.RequestHandler):
+class LoginRest(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
 

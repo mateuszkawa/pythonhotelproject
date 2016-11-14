@@ -27,3 +27,11 @@ class Client(Base):
         client_database.surname = client.surname
         session.commit()
         session.close()
+
+    @staticmethod
+    def create_client(client: 'Client'):
+        session = create_session(bind=get_engine())
+        session.begin()
+        session.add(client)
+        session.commit()
+        session.close()

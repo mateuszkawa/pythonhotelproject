@@ -2,7 +2,6 @@
 import tornado.web
 import mako.lookup
 from dao.client import Client
-from dao.user import User
 from handler.helpers.menu import prepare_variables
 
 
