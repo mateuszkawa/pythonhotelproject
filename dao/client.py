@@ -35,3 +35,10 @@ class Client(Base):
         session.add(client)
         session.commit()
         session.close()
+
+    @staticmethod
+    def get_all_clients() -> list('Client'):
+        session = create_session(bind=get_engine())
+        clients = session.query(Client).all()
+        session.close()
+        return clients
