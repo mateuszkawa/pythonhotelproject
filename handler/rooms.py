@@ -80,15 +80,17 @@ class MainPageRoomMyHandler(tornado.web.RequestHandler):
         result_dict = dict()
         room_states = RoomState.get_all_room_states_for_user(int(self.get_secure_cookie('id')))
         for room_state in room_states:
-            result_dict[room_state.room] = dict()
-            result_dict[room_state.room]['name'] = Room.get_room(room_state.room).name
-            result_dict[room_state.room]['date_from'] = room_state.reserved_from
-            result_dict[room_state.room]['date_to'] = room_state.reserved_to
+            if room_state.room not in result_dict:
+                result_dict[room_state.room] = dict()
+            result_dict[room_state.room][room_state.id] = dict()
+            result_dict[room_state.room][room_state.id]['name'] = Room.get_room(room_state.room).name
+            result_dict[room_state.room][room_state.id]['date_from'] = room_state.reserved_from
+            result_dict[room_state.room][room_state.id]['date_to'] = room_state.reserved_to
             if room_state.payment:
-                result_dict[room_state.room]['state'] = 'PAYED'
+                result_dict[room_state.room][room_state.id]['state'] = 'PAYED'
             else:
-                result_dict[room_state.room]['state'] = 'RESERVED'
-            result_dict[room_state.room]['pay'] = room_state.payment
-            result_dict[room_state.room]['id'] = room_state.id
+                result_dict[room_state.room][room_state.id]['state'] = 'RESERVED'
+            result_dict[room_state.room][room_state.id]['pay'] = room_state.payment
+            result_dict[room_state.room][room_state.id]['id'] = room_state.id
         return result_dict
 

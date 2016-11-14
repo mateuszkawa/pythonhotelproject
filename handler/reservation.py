@@ -24,6 +24,7 @@ class ReservationMakeHandler(tornado.web.RequestHandler):
     def prepare_variables_inner(self, variables: dict, room_id: str):
         room_dict = dict()
         room_dict['id'] = room_id
-        if self.get_status() == 350:
+        if self.get_cookie('collide') is not None:
+            self.clear_cookie('collide')
             room_dict['collision'] = ''
         variables['room_dict'] = room_dict

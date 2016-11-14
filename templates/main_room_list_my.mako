@@ -19,18 +19,20 @@
         </thead>
         <tbody>
         % for room in room_dict:
-        <tr>
-            <td>${room_dict[room]['name']}</td>
-            <td>${str(room_dict[room]['date_from'])}</td>
-            <td>${str(room_dict[room]['date_to'])}</td>
-            <td>${room_dict[room]['state']}</td>
-            % if room_dict[room]['pay']:
-                <td>Already Payed</td>
-            % else:
-                <td><a href="/reservation/pay/${str(room_dict[room]['id'])}">PAY</a></td>
-            % endif
-            <td><a href="/reservation/cancel/${str(room_dict[room]['id'])}">CANCEL</a></td>
-        </tr>
+            % for state in room_dict[room]:
+            <tr>
+                <td>${room_dict[room][state]['name']}</td>
+                <td>${str(room_dict[room][state]['date_from'])}</td>
+                <td>${str(room_dict[room][state]['date_to'])}</td>
+                <td>${room_dict[room][state]['state']}</td>
+                % if room_dict[room][state]['pay']:
+                    <td>Already Payed</td>
+                % else:
+                    <td><a href="/reservation/pay/${str(room_dict[room][state]['id'])}">PAY</a></td>
+                % endif
+                <td><a href="/reservation/cancel/${str(room_dict[room][state]['id'])}">CANCEL</a></td>
+            </tr>
+            % endfor
         % endfor
         </tbody>
     </table>

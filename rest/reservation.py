@@ -44,7 +44,10 @@ class ReservationCreateRest(tornado.web.RequestHandler):
         room_id = self.get_argument('room_id')
         date_start = datetime.date(*tuple([int(x) for x in self.get_argument('date_start').split('/')]))
         date_end = datetime.date(*tuple([int(x) for x in self.get_argument('date_end').split('/')]))
-        if RoomState.check_colliding_states_for_room(int(room_id), date_start, date_end) == []:
+        if date_start > date_end:
+            self.set_cookie('collide', 'val')
+            self.redirect('/reservation/make/%s' % room_id)
+        elif RoomState.check_colliding_states_for_room(int(room_id), date_start, date_end) == []:
             room_state = RoomState(
                 reserved_from=date_start,
                 reserved_to=date_end,
@@ -53,4 +56,5 @@ class ReservationCreateRest(tornado.web.RequestHandler):
             RoomState.persist_room_state(room_state)
             self.redirect('/rooms/my')
         else:
-            self.redirect('/reservation/%s' % room_id, 350)
+            self.set_cookie('collide', 'val')
+            self.redirect('/reservation/make/%s' % room_id)
