@@ -69,6 +69,7 @@ class AdministratorsListClientsHandler(tornado.web.RequestHandler):
             client_dict[client.id]['surname'] = client.surname
         variables['client_dict'] = client_dict
 
+
 class AdministratorsEditClientHandler(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
