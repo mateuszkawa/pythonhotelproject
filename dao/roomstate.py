@@ -78,7 +78,6 @@ class RoomState(Base):
         session.close()
 
 
-
 if __name__ == '__main__':
     print(RoomState.check_colliding_states_for_room(1, datetime.date(2016, 11, 18), datetime.date(2016, 11, 21)) == [])
     for state in RoomState.check_colliding_states_for_room(1, datetime.date(2016, 11, 18), datetime.date(2016, 11, 21)):
