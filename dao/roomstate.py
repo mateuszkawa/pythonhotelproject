@@ -77,6 +77,13 @@ class RoomState(Base):
         session.commit()
         session.close()
 
+    @staticmethod
+    def persist_room_state(room_state: 'RoomState'):
+        session = create_session(bind=get_engine())
+        session.begin()
+        session.add(room_state)
+        session.commit()
+        session.close()
 
 if __name__ == '__main__':
     print(RoomState.check_colliding_states_for_room(1, datetime.date(2016, 11, 18), datetime.date(2016, 11, 21)) == [])

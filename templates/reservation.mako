@@ -6,29 +6,17 @@
     <title>Main</title></head>
 <body> <%include file="shared/menu.mako"/>
 <div class="container">
-    <form action="/rooms/filter" method="post">
+    <form action="/reservation/create" method="post">
+        % if 'collision' in room_dict:
+            <div><span><h4>Collision occured. Please take another date range</h4></span></div>
+        % endif
+        <input type="hidden" name="room_id" value="${room_dict['id']}">
         <label for="date_start">Date Start:</label>
         <input pattern="\d{4}/\d{2}/\d{2}" name="date_start" id="date_start" class="form-control" placeholder="2016/11/18" type="text">
         <label for="date_end">Date End:</label>
         <input pattern="\d{4}/\d{2}/\d{2}" name="date_end" id="date_end" class="form-control" placeholder="2016/11/21" type="text">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Filter</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Reserve</button>
     </form>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Room Name</th>
-            <th>ID</th>
-        </tr>
-        </thead>
-        <tbody>
-        % for room in room_dict:
-        <tr>
-            <td><a href="/reservation/make/${room_dict[room]['id']}">${room_dict[room]['name']}</a></td>
-            <td>${str(room_dict[room]['id'])}</td>
-        </tr>
-        % endfor
-        </tbody>
-    </table>
 </div>
 </body>
 </html>
