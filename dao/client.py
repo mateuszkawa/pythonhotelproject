@@ -17,3 +17,13 @@ class Client(Base):
         client = session.query(Client).filter(Client.id == client_id).first()
         session.close()
         return client
+
+    @staticmethod
+    def update_client(client: 'Client'):
+        session = create_session(bind=get_engine())
+        session.begin()
+        client_database = session.query(Client).filter(Client.id == client.id).first()
+        client_database.name = client.name
+        client_database.surname = client.surname
+        session.commit()
+        session.close()

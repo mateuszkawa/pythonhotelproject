@@ -22,5 +22,6 @@ class LoginREST(tornado.web.RequestHandler):
         else:
             self.set_secure_cookie('user', Client.get_client(user.client).name, expires_days=0.4)
             self.set_secure_cookie('id', str(user.id), expires_days=0.4)
+            self.set_secure_cookie('client_id', str(user.client), expires_days=0.4)
             self.set_secure_cookie('access_lvl', str(user.permission_level), expires_days=0.4)
             return True

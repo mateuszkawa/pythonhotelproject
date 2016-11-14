@@ -9,7 +9,7 @@
 <body>
 <%include file="shared/menu.mako"/>
 <div class="container">
-    CONTENT Hello
+    Hello
 </div>
 </body>
 </html>

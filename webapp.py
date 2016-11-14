@@ -5,8 +5,10 @@ from handler.login import LoginHandler, LogoutHandler
 from handler.main import MainPageHandler
 from handler.rooms import MainPageRoomHandler, MainPageRoomFilterHandler, MainPageRoomMyHandler
 from handler.reservation import ReservationMakeHandler
+from handler.client import MePageHandler
 from rest.reservation import ReservationCancelRest, ReservationPayRest, ReservationCreateRest
 from rest.login import LoginREST
+from rest.client import MeUpdateREST
 
 webserver.url_mapper.extend((
     (r"/register", RegistrationHandler),
@@ -20,6 +22,8 @@ webserver.url_mapper.extend((
     (r"/reservation/cancel/([^/]+)", ReservationCancelRest),
     (r"/reservation/make/([^/]+)", ReservationMakeHandler),
     (r"/reservation/create", ReservationCreateRest),
+    (r"/me", MePageHandler),
+    (r"/me/update", MeUpdateREST),
     (r"/logout", LogoutHandler)
     ))
 
