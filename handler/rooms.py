@@ -50,16 +50,8 @@ class MainPageRoomFilterHandler(tornado.web.RequestHandler):
 
     def prepare_rooms(self) -> dict:
         result_dict = dict()
-        date_start_list = self.get_argument('date_start').split('/')
-        date_end_list = self.get_argument('date_end').split('/')
-        date_start = datetime.date(
-            int(date_start_list[0]),
-            int(date_start_list[1]),
-            int(date_start_list[2]))
-        date_end = datetime.date(
-            int(date_end_list[0]),
-            int(date_end_list[1]),
-            int(date_end_list[2]))
+        date_start = datetime.date(*tuple([int(x) for x in self.get_argument('date_start').split('/')]))
+        date_end = datetime.date(*tuple([int(x) for x in self.get_argument('date_end').split('/')]))
         for room in Room.get_all_rooms():
             if RoomState.check_colliding_states_for_room(room.id, date_start=date_start, date_end=date_end) == []:
                 result_dict[room.id] = {

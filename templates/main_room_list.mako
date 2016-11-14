@@ -23,7 +23,7 @@
         <tbody>
         % for room in room_dict:
         <tr>
-            <td>${room_dict[room]['name']}</td>
+            <td><a href="">${room_dict[room]['name']}</a></td>
             <td>${str(room_dict[room]['id'])}</td>
         </tr>
         % endfor
