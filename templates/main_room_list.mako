@@ -8,9 +8,9 @@
 <div class="container">
     <form action="/rooms/filter" method="post">
         <label for="date_start">Date Start:</label>
-        <input pattern="\d{4}/\d{1,2}/\d{1,2}" name="date_start" id="date_start" class="form-control" placeholder="2016/11/18" type="text">
+        <input pattern="\d{4}/\d{2}/\d{2}" name="date_start" id="date_start" class="form-control" placeholder="2016/11/18" type="text">
         <label for="date_end">Date End:</label>
-        <input pattern="\d{4}/\d{1,2}/\d{1,2}" name="date_end" id="date_end" class="form-control" placeholder="2016/11/21" type="text">
+        <input pattern="\d{4}/\d{2}/\d{2}" name="date_end" id="date_end" class="form-control" placeholder="2016/11/21" type="text">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Filter</button>
     </form>
     <table class="table table-striped">
