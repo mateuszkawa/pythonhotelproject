@@ -41,7 +41,8 @@ class AdministratorsReservationCreateRest(tornado.web.RequestHandler):
         pass
 
     def get_current_user(self):
-        return self.get_secure_cookie("user")
+        if int(self.get_secure_cookie('access_lvl')) <= 2:
+            return self.get_secure_cookie("user")
 
     @tornado.web.authenticated
     def post(self):
@@ -63,3 +64,33 @@ class AdministratorsReservationCreateRest(tornado.web.RequestHandler):
         else:
             self.set_cookie('collide', 'val')
             self.redirect('/administrators/reservation')
+
+
+class AdministratorsShowReservationPayRest(tornado.web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
+    def get_current_user(self):
+        if int(self.get_secure_cookie('access_lvl')) <= 2:
+            return self.get_secure_cookie("user")
+
+    @tornado.web.authenticated
+    def get(self, room_state_id: str):
+        room_state = RoomState.get_room_state_by_id(room_state_id)
+        room_state.payment = True
+        RoomState.update_room_state(room_state)
+        self.redirect('/administrators/showreservations')
+
+
+class AdministratorsShowReservationCancelRest(tornado.web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
+    def get_current_user(self):
+        if int(self.get_secure_cookie('access_lvl')) <= 2:
+            return self.get_secure_cookie("user")
+
+    @tornado.web.authenticated
+    def get(self, room_state_id: str):
+        RoomState.delete_room_state(room_state_id)
+        self.redirect('/administrators/showreservations')

@@ -12,7 +12,7 @@
     <div><span><a href="/administrators/addclientview">Add Client</a></span></div>
     <div><span><a href="/administrators/listclients">List Clients</a></span></div>
     <div><span><a href="/administrators/reservation">Make a Reservation</a></span></div>
-    <div><span><a href="#">Show Reservations</a></span></div>
+    <div><span><a href="/administrators/showreservations">Show Reservations</a></span></div>
 </div>
 </body>
 </html>

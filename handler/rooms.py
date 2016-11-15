@@ -78,7 +78,7 @@ class MainPageRoomMyHandler(tornado.web.RequestHandler):
 
     def prepare_room_states(self) -> dict:
         result_dict = dict()
-        room_states = RoomState.get_all_room_states_for_user(int(self.get_secure_cookie('id')))
+        room_states = RoomState.get_all_room_states_for_client(int(self.get_secure_cookie('id')))
         for room_state in room_states:
             if room_state.room not in result_dict:
                 result_dict[room_state.room] = dict()

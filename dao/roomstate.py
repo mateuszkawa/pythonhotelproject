@@ -43,9 +43,9 @@ class RoomState(Base):
         return states
 
     @staticmethod
-    def get_all_room_states_for_user(user_id: Integer) -> list('RoomState'):
+    def get_all_room_states_for_client(client_id: Integer) -> list('RoomState'):
         session = create_session(bind=get_engine())
-        result_room_states = session.query(RoomState).filter(RoomState.client == user_id).all()
+        result_room_states = session.query(RoomState).filter(RoomState.client == client_id).all()
         session.close()
         return result_room_states
 

@@ -7,11 +7,12 @@ from handler.rooms import MainPageRoomHandler, MainPageRoomFilterHandler, MainPa
 from handler.reservation import ReservationMakeHandler
 from handler.client import MePageHandler
 from handler.administrators import AdministratorsViewHandler, AdministratorsAddClientViewHandler, AdministratorsListClientsHandler
-from handler.administrators import AdministratorsEditClientHandler, AdministratorsReservationHandler
+from handler.administrators import AdministratorsEditClientHandler, AdministratorsReservationHandler, AdministratorsShowReservationsHandler
 from rest.reservation import ReservationCancelRest, ReservationPayRest, ReservationCreateRest
 from rest.login import LoginRest
 from rest.client import MeUpdateRest
 from rest.administrators import AdministratorsAddClientRest, AdministratorsEditClientRest, AdministratorsReservationCreateRest
+from rest.administrators import AdministratorsShowReservationPayRest, AdministratorsShowReservationCancelRest
 
 webserver.url_mapper.extend((
     (r"/register", RegistrationHandler),
@@ -35,6 +36,9 @@ webserver.url_mapper.extend((
     (r"/administrators/editclient", AdministratorsEditClientRest),
     (r"/administrators/reservation", AdministratorsReservationHandler),
     (r"/administrators/reservation/make", AdministratorsReservationCreateRest),
+    (r"/administrators/showreservations", AdministratorsShowReservationsHandler),
+    (r"/administrators/showreservations/pay/([^/]+)", AdministratorsShowReservationPayRest),
+    (r"/administrators/showreservations/cancel/([^/]+)", AdministratorsShowReservationCancelRest),
     (r"/logout", LogoutHandler)
     ))
 
