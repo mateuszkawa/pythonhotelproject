@@ -18,7 +18,6 @@ class ReservationPayRest(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("user")
 
-
 class ReservationCancelRest(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
