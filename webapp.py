@@ -8,6 +8,7 @@ from handler.reservation import ReservationMakeHandler
 from handler.client import MePageHandler
 from handler.administrators import AdministratorsViewHandler, AdministratorsAddClientViewHandler, AdministratorsListClientsHandler
 from handler.administrators import AdministratorsEditClientHandler, AdministratorsReservationHandler, AdministratorsShowReservationsHandler
+from handler.accountant import AccountantHandler
 from rest.reservation import ReservationCancelRest, ReservationPayRest, ReservationCreateRest
 from rest.login import LoginRest
 from rest.register import RegisterRest
@@ -41,6 +42,7 @@ webserver.url_mapper.extend((
     (r"/administrators/showreservations", AdministratorsShowReservationsHandler),
     (r"/administrators/showreservations/pay/([^/]+)", AdministratorsShowReservationPayRest),
     (r"/administrators/showreservations/cancel/([^/]+)", AdministratorsShowReservationCancelRest),
+    (r"/accountant", AccountantHandler),
     (r"/logout", LogoutHandler)
     ))
 

@@ -6,6 +6,9 @@
       % if menu['access_lvl'] < 3:
       <li><a href="/administrators">Admin</a></li>
       % endif
+      % if menu['access_lvl'] < 2:
+      <li><a href="/accountant">Accountant</a></li>
+      % endif
     </ul>
     <a class="navbar-brand navbar-right" href="/logout">LogOut</a>
     <a class="navbar-brand navbar-right" href="/rooms/my">MyRooms</a>
