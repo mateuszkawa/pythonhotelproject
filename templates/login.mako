@@ -17,6 +17,7 @@
                            type="text">
                     <label for="inputPassword" class="sr-only">Password</label>
                     <input name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+                    <a href="/register">RESGISTER</a>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </form>
             </div>

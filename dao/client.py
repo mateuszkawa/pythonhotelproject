@@ -29,12 +29,13 @@ class Client(Base):
         session.close()
 
     @staticmethod
-    def create_client(client: 'Client'):
+    def create_client(client: 'Client') -> Integer:
         session = create_session(bind=get_engine())
         session.begin()
         session.add(client)
         session.commit()
         session.close()
+        return client.id
 
     @staticmethod
     def get_all_clients() -> list('Client'):

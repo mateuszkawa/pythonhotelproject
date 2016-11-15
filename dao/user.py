@@ -25,3 +25,12 @@ class User(Base):
         user = session.query(User).filter(User.login == login, User.password == password).first()
         session.close()
         return user
+
+    @staticmethod
+    def create_user(user: 'User') -> Integer:
+        session = create_session(bind=get_engine())
+        session.begin()
+        session.add(user)
+        session.commit()
+        session.close()
+        return user.id
