@@ -23,6 +23,8 @@
         % for client in client_dict:
             % for state in client_dict[client]['roomstates']:
             <tr>
+                <td>${client_dict[client]['name']}</td>
+                <td>${client_dict[client]['surname']}</td>
                 <td>${client_dict[client]['roomstates'][state]['room_name']}</td>
                 <td>${str(client_dict[client]['roomstates'][state]['reserved_from'])}</td>
                 <td>${str(client_dict[client]['roomstates'][state]['reserved_to'])}</td>
