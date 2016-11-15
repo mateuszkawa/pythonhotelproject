@@ -10,6 +10,7 @@ from handler.administrators import AdministratorsViewHandler, AdministratorsAddC
 from handler.administrators import AdministratorsEditClientHandler, AdministratorsReservationHandler, AdministratorsShowReservationsHandler
 from rest.reservation import ReservationCancelRest, ReservationPayRest, ReservationCreateRest
 from rest.login import LoginRest
+from rest.register import RegisterRest
 from rest.client import MeUpdateRest
 from rest.administrators import AdministratorsAddClientRest, AdministratorsEditClientRest, AdministratorsReservationCreateRest
 from rest.administrators import AdministratorsShowReservationPayRest, AdministratorsShowReservationCancelRest
@@ -19,6 +20,7 @@ webserver.url_mapper.extend((
     (r"/login", LoginHandler),
     (r"/main", MainPageHandler),
     (r"/hotel/rest/login", LoginRest),
+    (r"/hotel/rest/register", RegisterRest),
     (r"/rooms", MainPageRoomHandler),
     (r"/rooms/filter", MainPageRoomFilterHandler),
     (r"/rooms/my", MainPageRoomMyHandler),
